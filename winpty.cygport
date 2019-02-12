@@ -1,0 +1,30 @@
+
+# package name
+NAME="winpty"
+VERSION=0.4.4
+RELEASE=1
+
+# .hint generation
+CATEGORY="Devel"
+SUMMARY="A Windows software package providing an interface similar to a Unix pty-master for communicating with Windows console programs"
+DESCRIPTION="blabla"
+
+# source location
+GIT_URI="https://github.com/rprichard/winpty.git"
+GIT_BRANCH="master"
+#GIT_TAG="..."]
+inherit git
+
+# building
+NO_AUTOCONF=true
+NO_AUTOMAKE=true
+src_compile() {
+        cd ${S}
+        cygconf
+        cygmake
+}
+
+src_install() {
+        cd ${S}
+        cyginstall PREFIX=${D}
+}
